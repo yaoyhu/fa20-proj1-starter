@@ -49,6 +49,7 @@ Image *steganography(Image *image) {
       image->image[i][j].R = newColor->R;
       image->image[i][j].G = newColor->G;
       image->image[i][j].B = newColor->B;
+      free(newColor);
     }
   }
 
@@ -81,6 +82,6 @@ int main(int argc, char **argv) {
   image = readData(filename);
   Image *decoded = steganography(image);
   writeData(decoded);
-  freeImage(decoded);
+  freeImage(decoded); // it is image actually... do not free twice!
   return 0;
 }
